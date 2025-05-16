@@ -8,10 +8,7 @@
     "react": "^18.2.0",
     "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
     "react-icons": "^5.5.0",
-=======
->>>>>>> 4666f3b8e99c3e14bb3388dbf1c870581fabae2b
     "react-modal": "^3.16.3",
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
