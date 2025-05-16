@@ -16,11 +16,16 @@ body {
 }
 
 .hero-section {
-  background: var(--bg);
+  background: transparent;
   padding: 2rem;
   text-align: center;
 }
 
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+  gap: 20px;
+}
 .btn-back {
   display: inline-block;
   margin-top: 1rem;

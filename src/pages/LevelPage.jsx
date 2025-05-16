@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useGame } from '../context/GameContext';
-import levelsData from '../data/levels';
+import levelsData from '../data/levels.js';
 import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
 import { motion } from 'framer-motion';
@@ -12,7 +12,8 @@ const wrongSound = new Howl({ src: ['https://freesound.org/data/previews/109/109
 
 export default function LevelPage() {
   const { state, dispatch } = useGame();
-  const { levelId } = useParams();
+  const { id } = useParams();
+  const levelId = id;
   const navigate = useNavigate();
   const [confetti, setConfetti] = useState(false);
   const [modal, setModal] = useState(false);

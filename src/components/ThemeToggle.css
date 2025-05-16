@@ -1,0 +1,32 @@
+.theme-toggle {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--text);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  padding: 0;
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,1);
+  transform: scale(1.1);
+}
+
+.theme-toggle .icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Цветные иконки */
+.theme-toggle .moon {
+  color: #FFD700; /* яркое золото */
+}
+
+.theme-toggle .sun {
+  color: #FF8C00; /* тёплый оранжевый */
+}

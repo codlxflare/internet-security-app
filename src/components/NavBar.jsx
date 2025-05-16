@@ -1,28 +1,45 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Toggle from 'react-toggle';
-import 'react-toggle/style.css';
-import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../context/AuthContext';
+import ThemeToggle from './ThemeToggle';
+import { motion } from 'framer-motion';
+import './NavBar.css';
+
 export default function NavBar() {
-  const { dark, toggle } = useTheme();
+  const { user, logout } = useAuth();
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container">
-        <NavLink className="navbar-brand" to="/">Интернет-безопасность</NavLink>
-        <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span className="navbar-toggler-icon"/></button>
-        <div className="collapse navbar-collapse" id="nav">
-          <ul className="navbar-nav ms-auto align-items-center">
-            <li className="nav-item"><NavLink className="nav-link" to="/description">О проекте</NavLink></li>
-            <li className="nav-item"><NavLink className="nav-link" to="/shop">Магазин</NavLink></li>
-            <li className="nav-item"><NavLink className="nav-link" to="/achievements">Достижения</NavLink></li>
-          </ul>
-          <div className="d-flex align-items-center ms-3">
-            <span className="me-1">🌙</span>
-            <Toggle checked={dark} onChange={toggle} icons={false}/>
-            <span className="ms-1">☀️</span>
+    <nav className="navbar">
+      <NavLink to="/" className="navbar-brand">Интернет-безопасность</NavLink>
+      
+      <div className="nav-links">
+        {['achievements', 'description', 'shop'].map((path) => (
+          <NavLink
+            key={path}
+            to={`/${path}`}
+            className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+          >
+            <motion.span whileHover={{ scale:1.1 }} whileTap={{ scale:0.9 }}>
+              {path === 'achievements' ? '🏆 Достижения'
+                : path === 'description' ? 'ℹ️ О проекте'
+                : '🛒 Магазин'}
+            </motion.span>
+          </NavLink>
+        ))}
+      </div>
+      <div className="nav-actions">
+        <ThemeToggle />
+        {user ? (
+          <motion.div whileHover={{ scale:1.05 }} className="user-menu">
+            <NavLink to="/profile" className="nav-user">{user.username}</NavLink>
+            <button onClick={logout} className="btn btn-outline-danger btn-sm">Выход</button>
+          </motion.div>
+        ) : (
+          <div className="auth-buttons">
+            <NavLink to="/login" className="btn btn-outline-primary btn-sm">Вход</NavLink>
+            <NavLink to="/register" className="btn btn-primary btn-sm">Регистрация</NavLink>
           </div>
-        </div>
+        )}
       </div>
     </nav>
-  );
+);
 }
